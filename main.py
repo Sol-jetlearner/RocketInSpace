@@ -2,9 +2,9 @@
 import pygame
 from pygame.locals import *
 from time import *
-screen = pygame.display.set_mode((800,800))
-player_x = 400
-player_y = 400
+screen = pygame.display.set_mode((600,600))
+player_x = 200
+player_y = 200
 keys = [False,False,False,False]
 
 player = pygame.image.load("RocketInSpace/rocket.png")
@@ -12,7 +12,7 @@ background = pygame.image.load("RocketInSpace\spacebg.png")
 
 while player_y < 800:
     screen.blit(background,(0,0))
-    player.blit(player,(400,400))
+    screen.blit(player,(player_x, player_y))
 
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
@@ -39,19 +39,20 @@ while player_y < 800:
                 keys[3]=False
     if keys[0]:
         if player_y > 0:
-            player_y -= 10
+            player_y -= 20
     elif keys[2]:
-        if player_y < 780:
+        if player_y < 580:
             player_y += 10
 
     if keys[1]:
         if player_x > 0:
             player_x -= 10
     elif keys[3]:
-        if player_x < 780:
+        if player_x < 580:
             player_x += 10
 
 
     player_y+=10
-    sleep(0.5)
+    pygame.display.update()
+    sleep(0.2)
 print("Game Over")
